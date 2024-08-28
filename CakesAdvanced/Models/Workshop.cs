@@ -1,4 +1,6 @@
-﻿namespace CakesAdvanced
+﻿using System.Security.Cryptography.X509Certificates;
+
+namespace CakesAdvanced
 {
     public class Workshop
     {
@@ -8,6 +10,15 @@
         // Метод, который возвращает _recipes – список всех рецептов
         public Dictionary<string, Dictionary<string, int>> GetAllRecipes()
         {
+
+            // Возвращаем общий список
+            return _recipes;
+        }
+
+
+        public Workshop()
+        {
+
             // Торт Медовик с ингредиентами
             string medovik = "медовик";
 
@@ -32,9 +43,8 @@
             // Добавляем рецепты в общий список
             _recipes.Add(medovik, ingredientsMedovik);
             _recipes.Add(napoleon, ingredientsNapoleon);
-            
-            // Возвращаем общий список
-            return _recipes;
+
+
         }
 
         // the end of the code

@@ -10,8 +10,14 @@ namespace CakesAdvanced
         
 
         private Storage _storage = new Storage();
-
+                
         private Kitchen _kitchen;
+
+        public Store() { 
+            
+            _storage = new Storage();
+            _kitchen = new Kitchen(_storage);
+        }
 
 
         // Интерфейс для добавления новых ингредиентов на склад
@@ -147,10 +153,7 @@ namespace CakesAdvanced
         // Отображение списка доступных для заказа тортов
         void ShowAvailableCakeOptions()
         {
-            Storage storage = _storage;
-
-            _kitchen = new Kitchen(storage);
-
+            
             var availableRecipes = _kitchen.GetAvailableRecipes();
 
             if (availableRecipes.Count == 0)

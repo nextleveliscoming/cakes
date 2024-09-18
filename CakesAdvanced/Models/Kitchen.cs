@@ -1,5 +1,6 @@
 ﻿using CakesAdvanced.Models;
 using System.Diagnostics;
+using System.Security.Cryptography.X509Certificates;
 
 namespace CakesAdvanced
 {
@@ -15,13 +16,14 @@ namespace CakesAdvanced
 
             _workshop = new Workshop();
         }
+
         internal Dictionary<string, Dictionary<string, int>> GetAvailableRecipes()
         {
             var availableRecipes = new Dictionary<string, Dictionary<string, int>>();
 
             var allRecipes = _workshop.GetAllRecipes();
-            
-            foreach (string recipeName in allRecipes.Keys )
+
+            foreach (string recipeName in allRecipes.Keys)
             {
                 try
                 {
@@ -37,7 +39,8 @@ namespace CakesAdvanced
             return availableRecipes;
         }
 
-        public Cake MakeCake(string cakeName)
+        public event Action<Cake> CakeReady;
+        public async void MakeCake(string cakeName)
         {
             var availableRecipes = GetAvailableRecipes();
 
@@ -54,9 +57,12 @@ namespace CakesAdvanced
 
             Cake cake = new Cake(cakeName, takenIngredient);
 
-            return cake;
+            await Task.Delay(5000);
+
+            CakeReady?.Invoke(cake);
 
         }
+
 
     }
 }

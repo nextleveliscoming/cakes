@@ -1,5 +1,6 @@
 ﻿using CakesAdvanced.Models;
 using ConsoleUtils;
+using System.Diagnostics;
 
 namespace CakesAdvanced
 {
@@ -7,39 +8,52 @@ namespace CakesAdvanced
     {
         public string Name { get; set; }
 
-        
-
         private Storage _storage = new Storage();
-                
+
         private Kitchen _kitchen;
 
-        public Store() { 
-            
+        public Store()
+        {
             _storage = new Storage();
             _kitchen = new Kitchen(_storage);
+            _kitchen.CakeReady += OnCakeReady;
         }
 
+        void OnCakeReady(Cake cake)
+        {
+            Console.WriteLine($"{cake.Name} готов. Его цена: {cake.Price} руб.");
+        }
 
         // Интерфейс для добавления новых ингредиентов на склад
         void AddIngredients()
         {
             try
             {
-
                 // Название
-                Console.Write("Введите название ингредиента: ");
-                string name = Console.ReadLine();
-                Console.WriteLine();
+                string name;
+
+                do
+                {
+                    Console.Write("Введите название ингредиента: ");
+
+                    name = Console.ReadLine();
+
+                    if (string.IsNullOrWhiteSpace(name))
+                    {
+                        Console.Write("Ошибка! Некорректный ввод. Попробуйте еще раз. ");
+                    }
+
+                } while (string.IsNullOrWhiteSpace(name));
+
+                Console.Clear();
 
                 // Цена
                 Console.Write("Укажите цену ингредиента. ");
                 decimal cost = InputService.GetDecimal();
-                Console.WriteLine();
 
                 // Количество
                 Console.Write("Укажите количество ингрединта. ");
                 int quantity = InputService.GetInt();
-                Console.WriteLine();
 
                 Ingredient ingredientToAdd = new Ingredient()
                 {
@@ -90,6 +104,7 @@ namespace CakesAdvanced
             {
                 case '1':
                     AddIngredients();
+                    Console.WriteLine("Ингредиенты добавлены");
                     pressEnterToReturn();
                     break;
 
@@ -103,11 +118,13 @@ namespace CakesAdvanced
                         pressEnterToReturn();
                     }
 
-                    Console.WriteLine("Название\t\tЦена\t\tКоличество");
+                    string padding = "";
+
+                    Console.WriteLine($"Название:\t\tЦена:\t\tКоличество:");
 
                     foreach (Ingredient ingredient in ingredients)
                     {
-                        Console.WriteLine($"{ingredient.Name}\t\t\t{ingredient.Cost}\t\t{ingredient.Quantity}");
+                        Console.WriteLine($"{ingredient.Name.PadRight(24)}{ingredient.Cost}\t\t{ingredient.Quantity}");
                     }
 
                     pressEnterToReturn();
@@ -124,7 +141,7 @@ namespace CakesAdvanced
         {
             Dictionary<char, string> options = new Dictionary<char, string>
             {
-                {'1', "Показать список возможных тортов" },
+                {'1', "Показать список доступных тортов" },
                 {'2', "Заказать торт" }
             };
 
@@ -153,18 +170,18 @@ namespace CakesAdvanced
         // Отображение списка доступных для заказа тортов
         void ShowAvailableCakeOptions()
         {
-            
+
             var availableRecipes = _kitchen.GetAvailableRecipes();
 
             if (availableRecipes.Count == 0)
             {
-                Console.WriteLine("К сожалению, в данный момент невозможно сделать заказ");
+                Console.WriteLine("К сожалению, в данный момент невозможно сделать заказ. Попробуйте позже.");
                 pressEnterToReturn();
             }
             else
             {
                 Console.WriteLine("Список доступных для заказа тортов:");
-                int cakeNumber = 0;
+                int cakeNumber = 1;
 
                 foreach (string cakeName in availableRecipes.Keys)
                 {
@@ -176,32 +193,29 @@ namespace CakesAdvanced
         // Процесс заказа торта
         void TakeOrder()
         {
-            string? userCake = Console.ReadLine();
+            string userCake = Console.ReadLine();
 
-            if (userCake == null)
+            if (string.IsNullOrWhiteSpace(userCake))
             {
-                throw new Exception("Ошибка! Введено некорректное название");
+                Console.Clear();
+                Console.WriteLine("Вы ввели некорректное название");
+                pressEnterToReturn();
             }
 
+            Console.Clear();
 
             userCake = userCake.ToLower();
 
-            /*
-            if (_kitchen == null)
-            {
-                optionUnavailable();
-            }
-            */
-
-            Cake cake = _kitchen.MakeCake(userCake);
-
             try
             {
-                Console.WriteLine($"{cake.Name} готов. Его цена: {cake.Price}");
+                _kitchen.MakeCake(userCake);
+                Console.WriteLine($"Заказ на приготовление {userCake} принят");
             }
-            catch
+
+            catch (Exception ex)
             {
-                throw new Exception("Возникла ошибка!");
+                Debug.WriteLine($"Исключение: {ex.Message}");
+                throw new Exception($"К сожалению \"{userCake}\" невозможно приготовить");
             }
         }
 
@@ -224,7 +238,15 @@ namespace CakesAdvanced
                     break;
 
                 case '2':
-                    ShowClientOptions();
+                    try
+                    {
+                        ShowClientOptions();
+                        pressEnterToReturn();
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine(ex.Message);
+                    }
                     break;
 
                 default:

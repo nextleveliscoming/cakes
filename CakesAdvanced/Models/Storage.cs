@@ -182,8 +182,8 @@ namespace CakesAdvanced.Models
 
                 // Объект с названием, требуемым количеством и стоимостью
                 Ingredient ingredientToReturn = new Ingredient();
-                ingredientToReturn.Name = neededIngredient.Key;
                 ingredientToReturn.Quantity = neededIngredient.Value;
+                ingredientToReturn.Name = _allIngredients[indexOfIngredient].Name;
                 ingredientToReturn.Cost = _allIngredients[indexOfIngredient].Cost;
 
                 // Добавляем объект выше в возвращаемый список ингредиентов

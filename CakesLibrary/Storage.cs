@@ -4,7 +4,7 @@ using System.Linq;
 using System.Reflection.Metadata.Ecma335;
 using System.Runtime.InteropServices;
 
-namespace CakesAdvanced.Models
+namespace CakesLibrary
 {
     // Класс Storage, который будет управлять хранением, добавлением и поиском ингредиентов
     public class Storage

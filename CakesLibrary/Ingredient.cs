@@ -1,4 +1,4 @@
-﻿namespace CakesAdvanced
+﻿namespace CakesLibrary
 {
     public class Ingredient
     {

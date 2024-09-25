@@ -1,6 +1,6 @@
 ﻿using System.Security.Cryptography.X509Certificates;
 
-namespace CakesAdvanced
+namespace CakesLibrary
 {
     public class Workshop
     {

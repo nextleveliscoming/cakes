@@ -13,6 +13,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleUtils", "ConsoleUtil
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CakesAdvanced", "CakesAdvanced\CakesAdvanced.csproj", "{5D08650E-077F-4A83-B6EA-146D917209D5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CakesLibrary", "CakesLibrary\CakesLibrary.csproj", "{2AB1294D-2060-43E5-A9D8-A86225C85D14}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{5D08650E-077F-4A83-B6EA-146D917209D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5D08650E-077F-4A83-B6EA-146D917209D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5D08650E-077F-4A83-B6EA-146D917209D5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2AB1294D-2060-43E5-A9D8-A86225C85D14}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2AB1294D-2060-43E5-A9D8-A86225C85D14}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2AB1294D-2060-43E5-A9D8-A86225C85D14}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2AB1294D-2060-43E5-A9D8-A86225C85D14}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -34,6 +40,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{ED92B255-031E-43AF-958C-094A91D579D1} = {ABB3B79C-DEF7-4E88-BEF9-BD4F4B15034A}
 		{5D08650E-077F-4A83-B6EA-146D917209D5} = {D63796F6-E745-45C7-AACB-A53E3CFFE58A}
+		{2AB1294D-2060-43E5-A9D8-A86225C85D14} = {ABB3B79C-DEF7-4E88-BEF9-BD4F4B15034A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A4A8EEFA-E7FF-4708-80ED-E5973AC223E6}

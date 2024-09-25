@@ -1,8 +1,8 @@
-﻿using CakesAdvanced.Models;
+﻿using CakesLibrary;
 using System.Diagnostics;
 using System.Security.Cryptography.X509Certificates;
 
-namespace CakesAdvanced
+namespace CakesLibrary
 {
     public class Kitchen
     {
@@ -17,7 +17,7 @@ namespace CakesAdvanced
             _workshop = new Workshop();
         }
 
-        internal Dictionary<string, Dictionary<string, int>> GetAvailableRecipes()
+        public Dictionary<string, Dictionary<string, int>> GetAvailableRecipes()
         {
             var availableRecipes = new Dictionary<string, Dictionary<string, int>>();
 

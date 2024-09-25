@@ -4,14 +4,10 @@
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <OutputType>Exe</OutputType>
   </PropertyGroup>
 
-  
-
-  <ItemGroup>
-    <ProjectReference Include="..\CakesLibrary\CakesLibrary.csproj" />
-    <ProjectReference Include="..\ConsoleUtils\ConsoleUtils.csproj" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+	</ItemGroup>
 
 </Project>

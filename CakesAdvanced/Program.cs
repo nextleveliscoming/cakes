@@ -1,7 +1,4 @@
-﻿using CakesAdvanced.Models;
-using ConsoleUtils;
-
-namespace CakesAdvanced
+﻿namespace CakesAdvanced
 {
     internal class Program
     {

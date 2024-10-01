@@ -197,7 +197,7 @@ namespace CakesLibrary
             return ingredientsToReturn;
         }
 
-        public List<Ingredient> GetAllIngrredients()
+        public List<Ingredient> GetAllIngredients()
         {
             return _allIngredients;
         }

@@ -110,7 +110,7 @@ namespace CakesAdvanced
 
                 case '2':
 
-                    List<Ingredient> ingredients = _storage.GetAllIngrredients();
+                    List<Ingredient> ingredients = _storage.GetAllIngredients();
 
                     if (ingredients == null)
                     {

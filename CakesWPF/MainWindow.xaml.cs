@@ -1,4 +1,5 @@
 ﻿using CakesLibrary;
+using System.Collections.ObjectModel;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -17,11 +18,25 @@ namespace CakesWPF
     /// </summary>
     public partial class MainWindow : Window
     {
+        public ObservableCollection<Ingredient> Ingredients { get; } = new ObservableCollection<Ingredient>();
+
+
+
         public MainWindow()
         {
             InitializeComponent();
             Storage storage = new Storage();
             Kitchen kitchen = new Kitchen(storage);
+            
+            DataContext = this;
+            
+            foreach (var item in storage.GetAllIngredients())
+            {
+                Ingredients.Add(item);
+            }
+
         }
+
+        
     }
 }

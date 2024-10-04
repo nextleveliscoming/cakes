@@ -5,21 +5,33 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CakesWPF"
         mc:Ignorable="d"
+        d:DataContext="{d:DesignInstance Type=local:MainWindow, IsDesignTimeCreatable=True}"
         Title="Кондитерская" Height="450" Width="800">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="57*"/>
             <ColumnDefinition Width="743*"/>
         </Grid.ColumnDefinitions>
-        <TabControl Grid.ColumnSpan="2" Margin="0,0,688,0">
+        <TabControl Grid.ColumnSpan="2">
             <TabItem x:Name="tabClient" Header="Клиент">
                 <Grid Background="#FFE5E5E5"/>
             </TabItem>
             <TabItem x:Name="tabManager" Header="Менеджер">
-                <Grid Background="#FFE5E5E5"/>
+                <Grid Background="#FFE5E5E5">
+
+                    <ListView ItemsSource="{Binding Ingredients}" x:Name="lstIngredients">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}"/>
+                                <GridViewColumn Header="Quantity" DisplayMemberBinding="{Binding Quantity}"/>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+
+                </Grid>
             </TabItem>
         </TabControl>
 
     </Grid>
-    
+
 </Window>

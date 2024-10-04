@@ -20,8 +20,6 @@ namespace CakesWPF
     {
         public ObservableCollection<Ingredient> Ingredients { get; } = new ObservableCollection<Ingredient>();
 
-
-
         public MainWindow()
         {
             InitializeComponent();
@@ -37,6 +35,5 @@ namespace CakesWPF
 
         }
 
-        
     }
 }

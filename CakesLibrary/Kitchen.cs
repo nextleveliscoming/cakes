@@ -6,7 +6,7 @@ namespace CakesLibrary
 {
     public class Kitchen
     {
-        private Storage _storage = new Storage();
+        private Storage _storage;
 
         private Workshop _workshop;
 

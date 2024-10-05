@@ -118,8 +118,6 @@ namespace CakesAdvanced
                         pressEnterToReturn();
                     }
 
-                    string padding = "";
-
                     Console.WriteLine($"Название:\t\tЦена:\t\tКоличество:");
 
                     foreach (Ingredient ingredient in ingredients)

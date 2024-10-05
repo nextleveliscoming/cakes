@@ -100,7 +100,7 @@ namespace CakesLibrary
         /* 7. Метод добавляет один ингредиент на склад.
         Если ингредиент уже есть на складе, увеличивает его количество.
         После добавления, сохраняет текущее состояние склада в файл. */
-        void AddIngredient(Ingredient ingredient)
+        public void AddIngredient(Ingredient ingredient)
         {
 
             Ingredient? existingIngredient = FindIngredientByName(ingredient.Name);
@@ -199,6 +199,7 @@ namespace CakesLibrary
 
         public List<Ingredient> GetAllIngredients()
         {
+            LoadIngredients();
             return _allIngredients;
         }
 

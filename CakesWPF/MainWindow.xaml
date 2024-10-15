@@ -13,9 +13,35 @@
             <ColumnDefinition Width="743*"/>
         </Grid.ColumnDefinitions>
         <TabControl Grid.ColumnSpan="2">
+
+
             <TabItem x:Name="tabClient" Header="Клиент">
-                <Grid Background="#FFE5E5E5"/>
+                <Grid Background="#FFE5E5E5">
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <ListView ItemsSource="{Binding AvailableRecipes}" x:Name="lstRecipes" Grid.Row="0">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Width="Auto" Header="Название торта" DisplayMemberBinding="{Binding Key}"/>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+
+                    <StackPanel Orientation="Horizontal" Grid.Row="1" Margin="5">
+
+                        <Label Content="Название торта:"/>
+                        <TextBox x:Name="txtCakeName" Width="100" Padding="3"/>
+
+                        <Button x:Name="btnTakeOrder" Content="Приготовить" Padding="10 0 10 0" Margin="10 0 0 0" Click="btnTakeOrder_Click"/>
+                    </StackPanel>
+                    
+                </Grid>
             </TabItem>
+
             <TabItem x:Name="tabManager" Header="Менеджер">
                 <Grid Background="#FFE5E5E5">
                     <Grid.RowDefinitions>
@@ -40,7 +66,7 @@
                         <Label Content="Количество:"/>
                         <TextBox x:Name="txtQuantity" Width="30" Padding="3"/>
 
-                        <Button Content="Добавить" Padding="10 0 10 0" Margin="10 0 0 0" Click="Button_Click" />
+                        <Button x:Name="btnAddIngredient" Content="Добавить" Padding="10 0 10 0" Margin="10 0 0 0" Click="btnAddIngredient_Click"/>
                     </StackPanel>
                 </Grid>
             </TabItem>

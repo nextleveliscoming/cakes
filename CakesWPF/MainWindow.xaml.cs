@@ -19,32 +19,42 @@ namespace CakesWPF
     public partial class MainWindow : Window
     {
         public ObservableCollection<Ingredient> Ingredients { get; } = new ObservableCollection<Ingredient>();
+
+        public Dictionary<string, Dictionary<string, int>> AvailableRecipes { get; } = new Dictionary<string, Dictionary<string, int>>();
+
+
         Storage _storage;
         Kitchen _kitchen;
-
 
         public MainWindow()
         {
             InitializeComponent();
+            DataContext = this;
+
             _storage = new Storage();
             _kitchen = new Kitchen(_storage);
-            
-            DataContext = this;
-            
+
             foreach (var item in _storage.GetAllIngredients())
             {
                 Ingredients.Add(item);
             }
 
+
+            foreach (var item in _kitchen.GetAvailableRecipes())
+            {
+                AvailableRecipes.Add(item.Key, item.Value);
+            }
+
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void btnAddIngredient_Click(object sender, RoutedEventArgs e)
         {
-            Ingredient ingredient = new Ingredient();
-
-            ingredient.Name = txtName.Text;
-            ingredient.Quantity = Convert.ToInt32(txtQuantity.Text);
-            ingredient.Cost = Convert.ToDecimal(txtCost.Text);
+            Ingredient ingredient = new Ingredient()
+            {
+                Name = txtName.Text,
+                Quantity = Convert.ToInt32(txtQuantity.Text),
+                Cost = Convert.ToDecimal(txtCost.Text)
+            };
 
             _storage.AddIngredient(ingredient);
 
@@ -56,7 +66,24 @@ namespace CakesWPF
             }
 
             lstIngredients.ItemsSource = Ingredients;
+
         }
 
+        private void btnTakeOrder_Click(object sender, RoutedEventArgs e)
+        {
+
+            string input = txtCakeName.Text.ToLower();
+
+            if (!AvailableRecipes.Keys.Contains(input))
+            {
+                MessageBox.Show("Вы ввели некорректное название. Пожалуйста, введите название из списка.");
+                return;
+            }
+
+            MessageBox.Show("Ваш заказ принят, ожидайте");
+            
+            _kitchen.MakeCake(input);
+
+        }
     }
 }

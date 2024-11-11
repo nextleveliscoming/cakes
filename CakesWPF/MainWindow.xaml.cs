@@ -22,7 +22,6 @@ namespace CakesWPF
 
         public Dictionary<string, Dictionary<string, int>> AvailableRecipes { get; } = new Dictionary<string, Dictionary<string, int>>();
 
-
         Storage _storage;
         Kitchen _kitchen;
 
@@ -83,6 +82,11 @@ namespace CakesWPF
             MessageBox.Show("Ваш заказ принят, ожидайте");
             
             _kitchen.MakeCake(input);
+            
+            foreach (var item in _storage.GetAllIngredients())
+            {
+                Ingredients.Add(item);
+            }
 
         }
     }

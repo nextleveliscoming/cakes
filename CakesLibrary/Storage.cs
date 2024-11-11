@@ -3,9 +3,11 @@ using System.Text.Json.Nodes;
 using System.Linq;
 using System.Reflection.Metadata.Ecma335;
 using System.Runtime.InteropServices;
+using CakesWPF;
 
 namespace CakesLibrary
 {
+
     // Класс Storage, который будет управлять хранением, добавлением и поиском ингредиентов
     public class Storage
     {
@@ -13,44 +15,32 @@ namespace CakesLibrary
         // 1. Приватный список ингредиентов, где хранятся все ингредиенты на складе
         private List<Ingredient> _allIngredients = new List<Ingredient>();
 
-        // Формирование пути к файлу Ingredients.json
-        string path = Directory.GetCurrentDirectory() + @"\Ingredients.json";
 
-        // 2. Сериализация текущего списка ингредиентов и сохранение его в файл
+        // Формирование пути к файлу Ingredients.db
+        string path = Directory.GetCurrentDirectory() + @"\Ingredients.db";
+
+        // 2. Сохранение текущего списка ингредиентов в файл
         void SaveIngredients()
         {
-            // Сериализация в строку с помощью метода из Newtonsoft.Json
-            string allIngredientsSerialized = JsonConvert.SerializeObject(_allIngredients);
-
-            // Создаем файл с сериализованным текстом
-            File.WriteAllText(path, allIngredientsSerialized);
+            using (ApplicationContext db = new ApplicationContext())
+            {
+                db.Database.EnsureDeleted();
+                db.Database.EnsureCreated();
+                foreach (Ingredient ingredient in _allIngredients)
+                {
+                    db.Ingredients.Add(ingredient);
+                }
+                db.SaveChanges();
+            }
         }
 
-        /* 3. Метод загружает ингредиенты из файла. Если файл существует,
-        десериализует данные и обновляет список ингредиентов */
+        // 3. Метод выгружает ингредиенты из файла
         public void LoadIngredients()
         {
-            /* Новый экземпляр класса FileInfo,
-              чтобы определить существует ли нужный файл
-              по указанному пути */
-            FileInfo fileInfo = new FileInfo(path);
-
-            // Если, файл существует, то...
-            if (fileInfo.Exists)
+            using (ApplicationContext db = new ApplicationContext())
             {
-                // считываем весь файл
-                string fileText = File.ReadAllText(path);
-
-                // десериализовываем считанный текст в объекты типа
-                _allIngredients = JsonConvert.DeserializeObject<List<Ingredient>>(fileText)!;
-
-                
-                if (_allIngredients == null)
-                {
-                    _allIngredients = new List<Ingredient>();
-                }
-                
-
+                db.Database.EnsureCreated();
+                _allIngredients = db.Ingredients.ToList();
             }
         }
 
@@ -205,4 +195,5 @@ namespace CakesLibrary
 
         // the end of the code
     }
+
 }

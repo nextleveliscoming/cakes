@@ -1,4 +1,7 @@
-﻿namespace CakesLibrary
+﻿using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
+
+namespace CakesLibrary
 {
     public class Ingredient
     {

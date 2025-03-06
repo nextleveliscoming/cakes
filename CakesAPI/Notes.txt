@@ -1,0 +1,5 @@
+API								Description					Request body	Response body
+GET /api/ingredients			Get all ingredients			None			Array of ingredients
+POST /api/ingredients			Add a new ingredient		Ingredient		Renewed array of ingredients
+GET /api/cakes					Get all available cakes		None			Array of available cakes
+GET /api/cakes/{name}			Get a cooked cake			None			Cake

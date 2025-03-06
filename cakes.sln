@@ -17,6 +17,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WPF", "WPF", "{DEA62E3C-1BB
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CakesWPF", "CakesWPF\CakesWPF.csproj", "{0BE0E526-1CA7-4D4E-917A-0A4455B36AD5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cakes API", "CakesAPI\Cakes API.csproj", "{DD6381A7-0617-4107-BF20-F2E70E11F9DB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{0BE0E526-1CA7-4D4E-917A-0A4455B36AD5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0BE0E526-1CA7-4D4E-917A-0A4455B36AD5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0BE0E526-1CA7-4D4E-917A-0A4455B36AD5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DD6381A7-0617-4107-BF20-F2E70E11F9DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DD6381A7-0617-4107-BF20-F2E70E11F9DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DD6381A7-0617-4107-BF20-F2E70E11F9DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DD6381A7-0617-4107-BF20-F2E70E11F9DB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
